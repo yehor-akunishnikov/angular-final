@@ -1,0 +1,71 @@
+<app-auth-form-container>
+  <form 
+    class="full-width" 
+    [formGroup]="registerForm"
+  >
+    <div class="text-center">
+      <h1 class="title">Register</h1>
+    </div>
+    <mat-form-field appearance="standard" class="full-width">
+      <mat-label>Username</mat-label>
+      <input 
+        matInput 
+        placeholder="Shket12" 
+        type="text"
+        formControlName="username"
+      >
+      <mat-icon matSuffix>person</mat-icon>
+      <mat-error *ngIf="!registerForm.controls['username'].valid">
+        Please enter a valid username
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="standard" class="full-width">
+      <mat-label>Password</mat-label>
+      <input 
+        matInput 
+        type="password"
+        formControlName="password"
+      >
+      <mat-icon matSuffix>lock</mat-icon>
+      <mat-error 
+        *ngIf="
+          registerForm.controls['password'].hasError('required') && 
+          !registerForm.controls['password'].hasError('pattern')
+        "
+      >
+        Please enter a password
+      </mat-error>
+      <mat-error 
+        *ngIf="
+          registerForm.controls['password'].hasError('pattern') &&
+          !registerForm.controls['password'].hasError('required')
+        "
+      >
+        Please enter a strong password
+      </mat-error>
+    </mat-form-field>
+    <mat-form-field appearance="standard" class="full-width">
+      <mat-label>Repeat password</mat-label>
+      <input 
+        matInput 
+        type="password"
+        formControlName="repeatPassword"
+      >
+      <mat-icon matSuffix>lock</mat-icon>
+      <mat-error *ngIf="!registerForm.controls['repeatPassword'].valid">
+        Passwords should match
+      </mat-error>
+    </mat-form-field>
+    <div 
+      class="text-center"
+      [ngStyle]="{'margin-top': '20px'}" 
+    >
+      <button 
+        mat-raised-button 
+        color="primary" 
+        class="full-width" 
+        [disabled]="!registerForm.valid"
+      >Register</button>
+    </div>
+  </form>
+</app-auth-form-container>
