@@ -48,7 +48,7 @@ app.use((err, req, res, next) => {
 (async () => {
   try {
     await mongoose.connect(
-        process.env.DB,
+        'mongodb+srv://yehor:tqn8ggPavnLm6j22@firstcluster.okoyd.mongodb.net/EPAM_NODE?retryWrites=true&w=majority',
         {
           useNewUrlParser: true,
           useUnifiedTopology: true,
