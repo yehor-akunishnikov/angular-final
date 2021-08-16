@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { AuthFormContainerComponent } from './auth-form-container.component';
+import { FriendListComponent } from './friend-list.component';
 
-describe('AuthFormContainerComponent', () => {
-  let component: AuthFormContainerComponent;
-  let fixture: ComponentFixture<AuthFormContainerComponent>;
+describe('FriendListComponent', () => {
+  let component: FriendListComponent;
+  let fixture: ComponentFixture<FriendListComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ AuthFormContainerComponent ]
+      declarations: [ FriendListComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(AuthFormContainerComponent);
+    fixture = TestBed.createComponent(FriendListComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

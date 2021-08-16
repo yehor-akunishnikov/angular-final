@@ -10,6 +10,10 @@ const routes: Routes = [
   {
     path: 'auth',
     loadChildren: () => import('./features/auth/auth.module').then(m => m.AuthModule)
+  },
+  {
+    path: 'friends',
+    loadChildren: () => import('./features/friends/friends.module').then(m => m.FriendsModule)
   }
 ];
 

@@ -52,7 +52,16 @@
         formControlName="repeatPassword"
       >
       <mat-icon matSuffix>lock</mat-icon>
-      <mat-error *ngIf="!registerForm.controls['repeatPassword'].valid">
+      <mat-error *ngIf="
+        registerForm.controls['repeatPassword'].hasError('required') &&
+        !registerForm.controls['repeatPassword'].hasError('notMatch') 
+      ">
+        Please repeat a password
+      </mat-error>
+      <mat-error *ngIf="
+        registerForm.controls['repeatPassword'].hasError('notMatch') &&
+        !registerForm.controls['repeatPassword'].hasError('required')
+      ">
         Passwords should match
       </mat-error>
     </mat-form-field>

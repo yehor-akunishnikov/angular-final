@@ -1,12 +1,14 @@
 import { AbstractControl, ValidationErrors } from '@angular/forms';
 
-export const MatchValidator = (
-    form: AbstractControl, 
-  ): ValidationErrors | null => {
-  const password = form.get('password')?.value;
-  const repeatPassword = form.get('repeatPassword')?.value;
+export const MatchPasswordValidator = (form: AbstractControl): ValidationErrors | null => {
+  const password = form.get('password');
+  const repeatPassword = form.get('repeatPassword');
 
-  console.log(this);
-
-  return password === repeatPassword ? null : { match: repeatPassword }
-}
+  if(password?.dirty && repeatPassword?.dirty && 
+    password.value !== repeatPassword.value) 
+  {
+    repeatPassword.setErrors({notMatch: true});
+    return {notMatch: true};
+  }
+  return null;
+};

@@ -19,7 +19,7 @@ export class LoginComponent implements OnInit {
     this.loginForm = new FormGroup({
       username: new FormControl(null, [
         Validators.required,
-        Validators.pattern("^[A-Za-z0-9_-]{3,16}$"),
+        Validators.pattern("^[A-Za-z0-9_-]{3,10}$"),
       ]),
       password: new FormControl(null, [
         Validators.required,

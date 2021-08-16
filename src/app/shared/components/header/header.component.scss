@@ -1,0 +1,29 @@
+.header {
+  &__inner {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+}
+.nav-link {
+  display: inline;
+
+  margin-right: 15px;
+  
+  text-decoration: none;
+  color: #ffffffea;
+
+  &:last-child {
+    margin-right: 0;
+  }
+
+  &:hover {
+    color: #fff;
+  }
+}
+.icon {
+  font-size: 46px;
+  height: 46px;
+  width: 46px;
+  vertical-align: middle;
+}

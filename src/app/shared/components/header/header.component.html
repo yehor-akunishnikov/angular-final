@@ -1,0 +1,30 @@
+<header class="header">
+  <mat-toolbar color="primary">
+    <div class="container">
+      <div class="header__inner">
+        <a [routerLink]="['/']" class="nav-link">
+          <mat-icon 
+            aria-hidden="false" 
+            aria-label="Example home icon"
+            class="icon"
+          >
+          videogame_asset</mat-icon>
+        </a>
+        <nav class="nav">
+          <a [routerLink]="['/']" class="nav-link">
+            Games
+          </a>
+          <a [routerLink]="['/']" class="nav-link">
+            Library
+          </a>
+          <a [routerLink]="['/friends']" class="nav-link">
+            Friends
+          </a>
+          <a [routerLink]="['/']" class="nav-link">
+            Profile
+          </a>
+        </nav>
+      </div>
+    </div>
+  </mat-toolbar>
+</header>

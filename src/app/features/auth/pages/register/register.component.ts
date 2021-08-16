@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
-import { MatchValidator } from 'src/app/core/validators/matchPassword.validator';
+import { MatchPasswordValidator } from 'src/app/core/validators/matchPassword.validator';
 
 @Component({
   selector: 'app-register',
@@ -20,16 +20,13 @@ export class RegisterComponent implements OnInit {
     this.registerForm = new FormGroup({
       username: new FormControl(null, [
         Validators.required,
-        Validators.pattern("^[A-Za-z0-9_-]{3,16}$"),
+        Validators.pattern("^[A-Za-z0-9_-]{3,10}$"),
       ]),
       password: new FormControl(null, [
         Validators.required, 
         Validators.pattern("^(?=.*[0-9])(?=.*[A-Z])(?=.*[a-z]).{8,}$"),
       ]),
-      repeatPassword: new FormControl(null, [
-        Validators.required, 
-        MatchValidator.bind(this),
-      ]),
-    });
+      repeatPassword: new FormControl(null, Validators.required),
+    }, MatchPasswordValidator);
   }
 }
