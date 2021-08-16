@@ -20,6 +20,8 @@ const { gamesRouter } = require('./controllers/gamesController');
 // Middleware
 const {authMiddleware} = require('./middleware/authMiddleware');
 
+app.use(express.static(__dirname + '/dist/lab-js-final-project'))
+
 app.use(cors({origin: 'http://localhost:4200'}));
 app.use(express.static('./dist'));
 app.use(express.json());
@@ -27,6 +29,9 @@ app.use(morgan('tiny'));
 
 
 // Routers
+app.get('/', (req, res) => {
+  res.sendFile(path.join(__dirname + '/dist/lab-js-final-project/index.html'));
+});
 app.use('/api/auth', authRouter);
 app.use('/api/users', [authMiddleware], usersRouter);
 app.use('/api/users/me', [authMiddleware], userDataRouter);

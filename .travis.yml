@@ -1,0 +1,18 @@
+language: node_js
+node_js:
+- lts/*
+before_install:
+- npm install -g @angular/cli
+install:
+- npm install
+- cd server
+- npm install
+- cd ..
+branches:
+  only:
+  - master
+deploy:
+  provider: heroku
+  app: angular-final-project
+  api_key:
+    secure: g9tgIKZatPVinf/zpvuDky0mUFdGQ92jTkQNIlePOaoSt3e/SpR6w0ZlR5V4M6stUlL0OCFdpAHX9b8tYPUu/LTt4dRit1Uc1qLwdikyH/JlUyfG051uiPZWgqggdXTDfO2nufpqHPnDbccdytND/UEFC5djhKxi2fsnbUqioFckdu7sp2McQkqPQhDq2qJmTelyQ/QBE6tujdKYk64sxg5HUynxT3T4chXU1Xuha/HL0eW0MddoPHvGE4wd1tQ/iJlnRv4iXuJvApGRvdQt+lXQzxErMd5taDCYzi3BtYkFtsxgVy/iUN9hu+KKKRTE/Dd4KZg4zEaB1LGiQD8hbBbjxhjAIXdDJS1rSBctAsV5+cnI1Bu1CDqq/+6T7gnAPhnS0RN7cX97XpeU1c4kyOdNHzoWTx/yxlt+r4e6V3y4o/Iv+equzFdb8kaIUD/05T4FZ4EENdO2UIvQ9QV8xanjgJJVpB+5M5EBquAQJ672UIxcxlqZgkNJ8HFvjofRpv9iBHtPGnigfT7kgaxfEZSjSBacWY2xFPd1Dnq8tMVomavaEnFHdUFWMAFEgZunmXeGyvtBBoLi4WBFNKEri0SXleapBJoos9gc+cTJlRvRkt+jiqT/kkUWmjjwIfpGDO0+KL2lyIF1iEbc2XuvRCcZQh42BgbXN6tt/ZqQ44w=
