@@ -5,21 +5,35 @@ import { AppRoutingModule } from './app-routing.module';
 import { AppComponent } from './app.component';
 
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
-import { AuthModule } from './features/auth/auth.module';
-import { FriendsModule } from './features/friends/friends.module';
+import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
+
+import { ErrorInterceptor } from './core/interceptors/error.interceptor';
+import { NotFoundComponent } from './core/components/not-found/not-found.component';
+import { MaterialModule } from './material/material.module';
+import { SharedModule } from './shared/shared.module';
+import { HeaderComponent } from './core/components/header/header.component';
 
 @NgModule({
   declarations: [
-    AppComponent
+    AppComponent,
+    NotFoundComponent,
+    HeaderComponent,
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
+    HttpClientModule,
     BrowserAnimationsModule,
-    AuthModule,
-    FriendsModule
+    MaterialModule,
+    SharedModule,
   ],
-  providers: [],
+  providers: [
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: ErrorInterceptor,
+      multi: true,
+    }
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }
