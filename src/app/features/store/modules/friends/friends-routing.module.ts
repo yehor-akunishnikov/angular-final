@@ -7,15 +7,15 @@ import { FriendsSearchComponent } from './pages/friends-search/friends-search.co
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'friends-list',
+    redirectTo: 'list',
     pathMatch: 'full',
   },
   {
-    path: 'friends-list',
+    path: 'list',
     component: FriendsListComponent,
   },
   {
-    path: 'friends-search',
+    path: 'search',
     component: FriendsSearchComponent,
   },
 ];

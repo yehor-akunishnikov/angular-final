@@ -72,7 +72,7 @@ router.put('/friends', asyncWrapper(async (req, res) => {
   res.status(200).json({ message: `${friendName} added successfully to friendlist` });
 }));
 
-router.delete('/friends', asyncWrapper(async (req, res) => {
+router.patch('/friends', asyncWrapper(async (req, res) => {
   const {
     userId,
   } = req.user;

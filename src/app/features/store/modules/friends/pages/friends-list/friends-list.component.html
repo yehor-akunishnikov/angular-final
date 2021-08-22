@@ -1,1 +1,20 @@
-<p>friends-list works!</p>
+<app-page-header
+  title="Friends"
+>
+  <a [routerLink]="['../search']" mat-flat-button matSuffix color="primary">
+    <mat-icon [ngStyle]="{'margin': '0px 5px 2px 0px'}" matSuffix >person_add_alt</mat-icon>
+    <span>Find new friends</span>
+  </a>
+</app-page-header>
+<app-search-form (onFormSubmit)="filterFriends($event)"></app-search-form>
+<h2>My friends</h2>
+<div *ngFor="let friend of friends">
+  <app-friend>
+    <div>{{friend.username}}</div>
+    <button 
+      mat-flat-button 
+      color="warn"
+      (click)="removeFriend(friend)"
+    >Remove friend</button>
+  </app-friend>
+</div>

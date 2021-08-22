@@ -1,1 +1,20 @@
-<p>friends-search works!</p>
+<app-page-header
+  title="Friends"
+>
+  <a [routerLink]="['../list']" mat-flat-button matSuffix color="primary">
+    <mat-icon [ngStyle]="{'margin': '0px 5px 2px 0px'}" matSuffix >people</mat-icon>
+    <span>Go to friends list</span>
+  </a>
+</app-page-header>
+<app-search-form (onFormSubmit)="filterFriends($event)"></app-search-form>
+<h2>Search: {{inputState}}</h2>
+<div *ngFor="let friend of friends">
+  <app-friend>
+    <div>{{friend.username}}</div>
+    <button
+      mat-flat-button 
+      color="primary"
+      (click)="addFriend(friend)"
+    >Add friend</button>
+  </app-friend>
+</div>

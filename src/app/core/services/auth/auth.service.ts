@@ -26,7 +26,7 @@ export class AuthService {
     this.subscriptions.push(
       response.subscribe(
         () => {
-            this.router.navigate(['/login']);
+            this.router.navigate(['auth/login']);
         },
       )
     );
@@ -50,6 +50,7 @@ export class AuthService {
 
   public logout() {
     localStorage.removeItem('auth_token');
+    this.router.navigate(['auth']);
   }
  
   public get logIn(): boolean {
@@ -62,5 +63,9 @@ export class AuthService {
         sub.unsubscribe();
       });
     }
+  }
+
+  public getToken() {
+    return localStorage.auth_token;
   }
 }

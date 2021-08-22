@@ -13,7 +13,7 @@ class InvalidRequestError extends NodeCourseError {
 }
 
 class UnauthorizedError extends NodeCourseError {
-  constructor(message = 'Authorization error, something went wrong!') {
+  constructor(message = 'You are not authorized!') {
     super(message);
     this.status = 401;
   }

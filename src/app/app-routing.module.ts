@@ -2,13 +2,15 @@ import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { NotFoundComponent } from './core/components/not-found/not-found.component';
 
+import { AuthGuard } from './core/guards/auth.guard';
+
 import { FormContainerComponent } from './shared/components/form-container/form-container.component';
 import { MainContainerComponent } from './shared/components/main-container/main-container.component';
 
 const routes: Routes = [
   {
     path: '',
-    redirectTo: 'auth',
+    redirectTo: 'store',
     pathMatch: 'full'
   },
   {
@@ -33,6 +35,7 @@ const routes: Routes = [
   {
     path: 'store',
     component: MainContainerComponent,
+    canActivate: [AuthGuard],
     children: [
       {
         path: '',

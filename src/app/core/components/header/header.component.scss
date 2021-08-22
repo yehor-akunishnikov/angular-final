@@ -1,4 +1,11 @@
 .header {
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+
+  width: 100%;
+
   &__inner {
     display: flex;
     justify-content: space-between;
@@ -11,16 +18,17 @@
   margin-right: 15px;
   
   text-decoration: none;
-  color: #ffffffea;
-
-  &:last-child {
-    margin-right: 0;
-  }
+  color: #f0f8ffea;
 
   &:hover {
     color: #fff;
   }
+
+  &.active {
+    color: #fff;
+  }
 }
+
 .icon {
   font-size: 46px;
   height: 46px;

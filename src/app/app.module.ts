@@ -7,11 +7,12 @@ import { AppComponent } from './app.component';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { HttpClientModule, HTTP_INTERCEPTORS } from '@angular/common/http';
 
-import { ErrorInterceptor } from './core/interceptors/error.interceptor';
+import { ErrorInterceptor } from './core/interceptors/error/error.interceptor';
 import { NotFoundComponent } from './core/components/not-found/not-found.component';
 import { MaterialModule } from './material/material.module';
 import { SharedModule } from './shared/shared.module';
 import { HeaderComponent } from './core/components/header/header.component';
+import { AuthInterceptor } from './core/interceptors/auth/auth.interceptor';
 
 @NgModule({
   declarations: [
@@ -31,6 +32,11 @@ import { HeaderComponent } from './core/components/header/header.component';
     {
       provide: HTTP_INTERCEPTORS,
       useClass: ErrorInterceptor,
+      multi: true,
+    },
+    {
+      provide: HTTP_INTERCEPTORS,
+      useClass: AuthInterceptor,
       multi: true,
     }
   ],

@@ -2,7 +2,7 @@
   <mat-toolbar color="primary">
     <div class="container">
       <div class="header__inner">
-        <a [routerLink]="['/']" class="nav-link">
+        <a routerLink="store" class="nav-link">
           <mat-icon 
             aria-hidden="false" 
             aria-label="Example home icon"
@@ -11,19 +11,27 @@
           videogame_asset</mat-icon>
         </a>
         <nav class="nav">
-          <a [routerLink]="['/']" class="nav-link">
+          <a routerLink="store/games" routerLinkActive="active" class="nav-link">
             Games
           </a>
-          <a [routerLink]="['/']" class="nav-link">
+          <a routerLink="store/library" routerLinkActive="active" class="nav-link">
             Library
           </a>
-          <a [routerLink]="['/friends']" class="nav-link">
+          <a routerLink="store/friends" routerLinkActive="active" class="nav-link">
             Friends
           </a>
-          <a [routerLink]="['/']" class="nav-link">
+          <a routerLink="store/profile" routerLinkActive="active" class="nav-link">
             Profile
           </a>
         </nav>
+        <a
+          mat-raised-button
+          matSuffix
+          routerLink="auth"
+          (click)="authService.logout()"
+        >
+          Logout
+        </a>
       </div>
     </div>
   </mat-toolbar>
