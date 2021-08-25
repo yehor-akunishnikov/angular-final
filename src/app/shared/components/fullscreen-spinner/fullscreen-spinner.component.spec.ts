@@ -1,20 +1,20 @@
 import { ComponentFixture, TestBed } from '@angular/core/testing';
 
-import { SimpleModalComponent } from './simple-modal.component';
+import { FullscreenSpinnerComponent } from './fullscreen-spinner.component';
 
-describe('SimpleModalComponent', () => {
-  let component: SimpleModalComponent;
-  let fixture: ComponentFixture<SimpleModalComponent>;
+describe('FullscreenSpinnerComponent', () => {
+  let component: FullscreenSpinnerComponent;
+  let fixture: ComponentFixture<FullscreenSpinnerComponent>;
 
   beforeEach(async () => {
     await TestBed.configureTestingModule({
-      declarations: [ SimpleModalComponent ]
+      declarations: [ FullscreenSpinnerComponent ]
     })
     .compileComponents();
   });
 
   beforeEach(() => {
-    fixture = TestBed.createComponent(SimpleModalComponent);
+    fixture = TestBed.createComponent(FullscreenSpinnerComponent);
     component = fixture.componentInstance;
     fixture.detectChanges();
   });

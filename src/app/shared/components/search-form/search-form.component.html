@@ -4,8 +4,8 @@
   (submit)="onSubmit()"
 >
   <mat-form-field class="input" appearance="outline">
-    <mat-label>Search friends</mat-label>
-    <input formControlName="searchInput" matInput placeholder="Nickname">
+    <mat-label>Search {{label}}</mat-label>
+    <input formControlName="searchInput" matInput placeholder={{placeholder}}>
     <button class="btn" mat-flat-button matSuffix color="primary">
       Search
     </button>

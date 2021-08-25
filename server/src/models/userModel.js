@@ -26,14 +26,14 @@ const User = mongoose.model('User', {
     type: Array,
     default: [],
     items: {
-      type: mongoose.Schema.ObjectId,
+      type: String,
     },
   },
   games: {
     type: Array,
     default: [],
     items: {
-      type: mongoose.Schema.ObjectId,
+      type: String,
     },
   }
 });

@@ -30,9 +30,6 @@ app.use(morgan('tiny'));
 
 
 // Routers
-app.get('/', (req, res) => {
-  res.sendFile(path.join(__dirname + '/../../dist/lab-js-final-project/index.html'));
-});
 app.use('/api/auth', authRouter);
 app.use('/api/users', [authMiddleware], usersRouter);
 app.use('/api/users/me', [authMiddleware], userDataRouter);

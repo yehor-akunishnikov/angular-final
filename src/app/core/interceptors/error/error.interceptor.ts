@@ -15,8 +15,7 @@ import { AuthService } from '../../services/auth/auth.service';
   providedIn: 'root'
 })
 export class ErrorInterceptor implements HttpInterceptor {
-
-  public constructor(
+  constructor(
     private readonly errorService: ErrorService,
     private readonly authService: AuthService,
   ) { }
@@ -25,7 +24,6 @@ export class ErrorInterceptor implements HttpInterceptor {
     return next.handle(request)
       .pipe(
         catchError(error => {
-          console.log(error);
           if(error.status === 401) {
             this.authService.logout();
           }

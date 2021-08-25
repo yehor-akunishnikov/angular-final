@@ -7,8 +7,12 @@ const {
   deleteUserById,
   updateUserInfoById,
 
-  getUserFriendsById,
-  addFriendById,
+  createFriendInvite,
+  getFriendInvites,
+  acceptFriendInvite,
+  declineFriendInvite,
+
+  getFriendsById,
   removeFriendById,
 
   getUserGamesById,
@@ -48,18 +52,60 @@ router.delete('/', asyncWrapper(async (req, res) => {
   res.status(200).json({ message: 'Profile deleted successfully' });
 }));
 
-// Friends
+// Friend invites
+router.get('/friend-invites', asyncWrapper(async (req, res) => {
+  const {
+    userId,
+  } = req.user;
 
+  const invites = await getFriendInvites(userId);
+  res.status(200).json(invites);
+}));
+
+router.post('/friend-invites', asyncWrapper(async (req, res) => {
+  const {
+    userId,
+  } = req.user;
+
+  const {
+    userId: friendId,
+  } = req.body;
+
+  const inviteId = await createFriendInvite(userId, friendId);
+  res.status(200).json(inviteId);
+}));
+
+router.put('/friend-invites', asyncWrapper(async (req, res) => {
+  const {
+    inviteId,
+  } = req.body;
+
+  console.log(inviteId);
+
+  await acceptFriendInvite(inviteId);
+  res.status(200).json({ message: 'Invite successfully accepted!' });
+}));
+
+router.delete('/friend-invites', asyncWrapper(async (req, res) => {
+  const {
+    inviteId,
+  } = req.body;
+
+  await declineFriendInvite(inviteId);
+  res.status(200).json({ message: 'Invite declined!' });
+}));
+
+// Friends
 router.get('/friends', asyncWrapper(async (req, res) => {
   const {
     userId,
   } = req.user;
 
-  const friendsList = await getUserFriendsById(userId);
-  res.status(200).json(friendsList);
+  const friends = await getFriendsById(userId);
+  res.status(200).json(friends);
 }));
 
-router.put('/friends', asyncWrapper(async (req, res) => {
+router.delete('/friends', asyncWrapper(async (req, res) => {
   const {
     userId,
   } = req.user;
@@ -68,32 +114,20 @@ router.put('/friends', asyncWrapper(async (req, res) => {
     friendId,
   } = req.body;
 
-  const friendName = await addFriendById(userId, friendId);
-  res.status(200).json({ message: `${friendName} added successfully to friendlist` });
+  await removeFriendById(userId, friendId);
+  res.status(200).json({ message: 'Friend removed!' });
 }));
 
-router.patch('/friends', asyncWrapper(async (req, res) => {
-  const {
-    userId,
-  } = req.user;
 
-  const {
-    friendId,
-  } = req.body;
-
-  const friendName = await removeFriendById(userId, friendId);
-  res.status(200).json({ message: `${friendName} successfully removed from friendlist` });
-}));
 
 // Games
-
 router.get('/games', asyncWrapper(async (req, res) => {
   const {
     userId,
   } = req.user;
 
-  const gamesList = await getUserGamesById(userId);
-  res.status(200).json(gamesList);
+  const games = await getUserGamesById(userId);
+  res.status(200).json(games);
 }));
 
 router.put('/games', asyncWrapper(async (req, res) => {

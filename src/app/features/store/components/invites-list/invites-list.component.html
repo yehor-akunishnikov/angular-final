@@ -1,0 +1,23 @@
+<div>
+  <div *ngIf="{invites: invites$ | async, loading: loading$ | async} as observables">
+    <div *ngIf="!observables.loading">
+      <h2>My invites({{observables.invites?.length}})</h2>
+      <app-list-item *ngFor="let invite of observables.invites">
+        <div>{{invite.requesterName}}</div>
+        <div>
+          <button 
+            mat-flat-button 
+            color="primary"
+            [ngStyle]="{
+              'background-color': 'green'
+            }"
+            (click)="acceptInvite(invite)"
+          >Accept invite</button>
+        </div>
+      </app-list-item>
+      <app-list-item *ngIf="!observables.invites?.length">
+        <div>You have no invites</div>
+      </app-list-item>
+    </div>
+  </div>
+</div>

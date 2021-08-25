@@ -1,4 +1,4 @@
-import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Component, OnInit, Output, EventEmitter, Input } from '@angular/core';
 import { FormControl, FormGroup } from '@angular/forms';
 
 @Component({
@@ -8,11 +8,13 @@ import { FormControl, FormGroup } from '@angular/forms';
 })
 export class SearchFormComponent implements OnInit {
   public searchForm: FormGroup = new FormGroup({});
-  @Output() onFormSubmit: EventEmitter<string> = new EventEmitter();
+  @Input() public label: string = '';
+  @Input() public placeholder: string = '';
+  @Output() public onFormSubmit: EventEmitter<string> = new EventEmitter();
 
   constructor() { }
 
-  ngOnInit(): void {
+  public ngOnInit(): void {
     this.initForm();
   }
 
@@ -23,8 +25,8 @@ export class SearchFormComponent implements OnInit {
   }
 
   public onSubmit() {
-    if(this.searchForm.value) {
-      this.onFormSubmit.emit(this.searchForm.value.searchInput);
-    }
+    const {value: formValue} = this.searchForm;
+
+    if(formValue) this.onFormSubmit.emit(formValue.searchInput);
   }
 }

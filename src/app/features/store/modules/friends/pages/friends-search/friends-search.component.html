@@ -6,15 +6,45 @@
     <span>Go to friends list</span>
   </a>
 </app-page-header>
-<app-search-form (onFormSubmit)="filterFriends($event)"></app-search-form>
-<h2>Search: {{inputState}}</h2>
-<div *ngFor="let friend of friends">
-  <app-friend>
-    <div>{{friend.username}}</div>
-    <button
-      mat-flat-button 
-      color="primary"
-      (click)="addFriend(friend)"
-    >Add friend</button>
-  </app-friend>
+<app-search-form
+  label="User"
+  placeholder="Nickname"
+  (onFormSubmit)="updateFilter($event)"
+>
+</app-search-form>
+<h2>Search: {{searchInputText}}</h2>
+<div *ngIf="{users: users$ | async, loading: loading$ | async} as observables">
+  <div *ngIf="!observables.loading">
+    <app-list-item
+      *ngFor="let user of observables.users || [] 
+      | searchFilter : searchInputText : 'username'"
+    >
+      <div>{{user.username}}</div>
+
+      <button
+        *ngIf="user.status === 0"
+        mat-flat-button 
+        color="primary"
+        (click)="sendInvite(user)"
+      >Send invite</button>
+
+      <button
+        *ngIf="user.status === 1 && user.type === 'recipient'"
+        mat-flat-button 
+        color="warn"
+        (click)="cancelInvite(user)"
+      >Cancel invite</button>
+
+      <button
+        *ngIf="user.status === 1 && user.type === 'requester'"
+        mat-flat-button 
+        color="primary"
+        [ngStyle]="{
+          'background-color': 'green'
+        }"
+        (click)="acceptInvite(user)"
+      >Accept invite</button>
+
+    </app-list-item>
+  </div>
 </div>

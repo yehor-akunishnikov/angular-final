@@ -1,11 +1,12 @@
-const {User} = require('../models/userModel');
-const {Game} = require('../models/gameModel');
+const { User } = require('../models/userModel');
+const { Game } = require('../models/gameModel');
+const { Friendship } = require('../models/friendshipModel');
 const { InvalidRequestError } = require('../util/customErrors');
 
 const getUserInfoById = async (userId) => {
   return await User
       .findOne({_id: userId})
-      .select(['__id', 'age', 'username', 'email']);
+      .select(['_id', 'age', 'username', 'email']);
 };
 
 const deleteUserById = async (userId) => {
@@ -18,37 +19,67 @@ const updateUserInfoById = async (userId, data) => {
   });
 }
 
-// Friends
+// Friend invite
+const createFriendInvite = async(requesterId, recipientId) => {
+  const newFriendship = new Friendship({
+    requester: requesterId,
+    recipient: recipientId,
+  });
 
-const getUserFriendsById = async (userId) => {
+  await newFriendship.save();
+
+  return newFriendship._id;
+};
+
+const getFriendInvites = async(userId) => {
+  const invites = await Friendship.find({
+    'recipient': userId,
+  }).select('-__v');
+
+  const modifiedInvites = invites.map(async({requester, _id}) => {
+    const {username: requesterName } = await User.findById(requester);
+
+    return {requester, requesterName, _id};
+  });
+
+  return await Promise.all(modifiedInvites);
+};
+
+const acceptFriendInvite = async(inviteId) => {
+  const {requester, recipient} = await Friendship.findById(inviteId);
+
+  await User.findByIdAndUpdate(requester, { $push: { friends: recipient } });
+  await User.findByIdAndUpdate(recipient, { $push: { friends: requester } });
+  await Friendship.findByIdAndRemove(inviteId);
+}
+
+const declineFriendInvite = async(inviteId) => {
+  await Friendship.findByIdAndRemove(inviteId);
+}
+
+// Friends
+const getFriendsById = async(userId) => {
   const { friends } = await User.findById(userId);
 
   return await User.find({
     '_id': {
       $in: friends
     },
-  }, (err, friendsList) => {
-    if(err) throw new InvalidRequestError();
-    return friendsList;
   }).select(['_id', 'username']);
-}
+};
 
-const addFriendById = async (userId, friendId) => {
-  const { username: friendName } = await User.findById(friendId);
-  await User.findByIdAndUpdate(userId, { $push: { friends: friendId } });
+const removeFriendById = async(userId, friendId) => {
+  const user = await User.findById(userId);
+  const friend = await User.findById(friendId);
 
-  return friendName;
-}
+  user.friends = user.friends.filter(f => f._id != friendId);
+  friend.friends = friend.friends.filter(f => f._id != userId);
 
-const removeFriendById = async (userId, friendId) => {
-  const { username: friendName } = await User.findById(friendId);
-  await User.findByIdAndUpdate(userId, { $pull: { friends: friendId } });
-
-  return friendName;
-}
+  await user.save();
+  await friend.save();
+};
 
 // Games
-
 const getUserGamesById = async (userId) => {
   const { games } = await User.findById(userId);
 
@@ -81,8 +112,12 @@ module.exports = {
   deleteUserById,
   updateUserInfoById,
 
-  getUserFriendsById,
-  addFriendById,
+  createFriendInvite,
+  getFriendInvites,
+  acceptFriendInvite,
+  declineFriendInvite,
+
+  getFriendsById,
   removeFriendById,
 
   getUserGamesById,

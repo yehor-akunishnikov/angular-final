@@ -4,12 +4,12 @@ import { FormData } from 'src/app/features/auth/models/FormData';
 import { Router } from '@angular/router';
 import { LoginResponseData } from 'src/app/features/auth/models/LoginResponseData';
 import { Subscription } from 'rxjs';
+import { apiAuthUrl } from '../../constants/urls';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
-  private readonly apiAuthUrl = 'http://localhost:8080/api/auth';
   private subscriptions: Subscription[] = [];
 
   constructor(
@@ -17,9 +17,9 @@ export class AuthService {
     private readonly router: Router,
   ) { }
 
-  public register$({username, password}: FormData): void{
+  public register({username, password}: FormData): void{
     const response = this.httpClient.post(
-      `${this.apiAuthUrl}/register`,
+      `${apiAuthUrl}/register`,
       { username, password },
     );
 
@@ -32,9 +32,9 @@ export class AuthService {
     );
   }
 
-  public login$({username, password}: FormData): void{
+  public login({username, password}: FormData): void{
     const response = this.httpClient.post<LoginResponseData>(
-      `${this.apiAuthUrl}/login`,
+      `${apiAuthUrl}/login`,
       { username, password },
     );
 

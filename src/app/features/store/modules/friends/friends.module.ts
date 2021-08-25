@@ -6,7 +6,8 @@ import { FriendsRoutingModule } from './friends-routing.module';
 import { FriendsListComponent } from './pages/friends-list/friends-list.component';
 import { FriendsSearchComponent } from './pages/friends-search/friends-search.component';
 import { SharedModule } from 'src/app/shared/shared.module';
-import { FriendComponent } from '../../components/friend/friend.component';
+import { InvitesListComponent } from '../../components/invites-list/invites-list.component';
+import { ListItemComponent } from '../../components/list-item/list-item.component';
 
 
 
@@ -14,7 +15,8 @@ import { FriendComponent } from '../../components/friend/friend.component';
   declarations: [
     FriendsListComponent,
     FriendsSearchComponent,
-    FriendComponent,
+    InvitesListComponent,
+    ListItemComponent,
   ],
   imports: [
     CommonModule,

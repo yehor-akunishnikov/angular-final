@@ -16,8 +16,8 @@ router.get('/', asyncWrapper(async (req, res) => {
     userId,
   } = req.user;
 
-  const data = await getUsers(userId);
-  res.status(200).json(data);
+  const users = await getUsers(userId);
+  res.status(200).json(users);
 }));
 
 module.exports = {

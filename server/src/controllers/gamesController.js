@@ -12,8 +12,12 @@ const {
 } = require('../util/apiUtils');
 
 router.get('/', asyncWrapper(async (req, res) => {
-  const data = await getGames();
-  res.status(200).json(data);
+  const {
+    userId,
+  } = req.user;
+
+  const games = await getGames(userId);
+  res.status(200).json(games);
 }));
 
 module.exports = {

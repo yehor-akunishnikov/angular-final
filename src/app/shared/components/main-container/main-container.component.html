@@ -1,5 +1,11 @@
 <div class="center-wrapper">
   <mat-card class="main-container">
-    <router-outlet></router-outlet>
+    <router-outlet
+      (activate)="toggleLoadingStatus(false)"
+      (deactivate)="toggleLoadingStatus(true)"
+    ></router-outlet>
   </mat-card>
 </div>
+<app-fullscreen-spinner
+  *ngIf="isPageLoading"
+></app-fullscreen-spinner>

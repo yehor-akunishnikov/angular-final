@@ -38,6 +38,6 @@ export class RegisterComponent implements OnInit, OnDestroy {
   }
 
   public onSubmit() {
-    this.authService.register$(this.registerForm.value);
+    this.authService.register(this.registerForm.value);
   }
 }
