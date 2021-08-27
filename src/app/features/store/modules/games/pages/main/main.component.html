@@ -1,0 +1,71 @@
+<app-page-header
+  title="Games"
+>
+</app-page-header>
+
+<form>
+  <mat-form-field
+    class="full-width" 
+    appearance="outline" 
+    [formGroup]="gamesSearchForm"
+  >
+    <mat-label>Search friends</mat-label>
+    <input 
+      matInput 
+      placeholder="Username"
+      formControlName="searchInput"
+    >
+  </mat-form-field>
+</form>
+
+<div 
+  class="flex-container" 
+  *ngIf="{games: games$ | async, loading: loading$ | async} as observables"
+>
+  <div *ngIf="!observables.loading" class="games-grid" >
+    <app-game
+      *ngFor="let game of observables.games || []
+      | gamesFilter : filters"
+      [name]="game.name"
+      [price]="game.price.val + ' ' + game.price.currency"
+      [description]="game.description"
+    >
+      <button 
+        mat-flat-button 
+        color="primary"
+        class="full-width"
+        (click)="addGameToLib(game)"
+      >Add to library</button>
+    </app-game>
+  </div>
+
+  <mat-divider 
+    [vertical]="true"
+    class="divider"
+  ></mat-divider>
+  
+  <form 
+    class="filters-container" 
+    [formGroup]="gamesSearchForm"
+  >
+    <h4 class="title">Filter by price</h4>
+
+    <mat-slider
+      max="1000"
+      step="1"
+      color="primary"
+      class="slider"
+      formControlName="priceSlider"
+    ></mat-slider>
+    <p>Max price: {{gamesSearchForm.value.priceSlider || 'Unlimited'}} UAH</p>
+
+    <section class="example-section" formGroupName="tagCheckboxes">
+      <h4>Filter by tag</h4>
+      <p><mat-checkbox color="primary" formControlName="indie">Indie</mat-checkbox></p>
+      <p><mat-checkbox color="primary" formControlName="action">Action</mat-checkbox></p>
+      <p><mat-checkbox color="primary" formControlName="adventure">Adventure</mat-checkbox></p>
+    </section>
+  </form>
+</div>
+
+

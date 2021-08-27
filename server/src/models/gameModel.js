@@ -4,10 +4,12 @@ const Game = mongoose.model('Game', {
   name: {
     type: String,
     required: true,
-    unique: true,
   },
   price: {
-    type: Number,
+    type: {
+      val: Number,
+      currency: String,
+    },
     required: true,
   },
   description: {

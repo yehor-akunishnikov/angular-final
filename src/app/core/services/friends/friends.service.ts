@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 
 import { Observable } from 'rxjs';
-import { delay, finalize, map } from 'rxjs/operators';
+import { finalize, map } from 'rxjs/operators';
 
 import { User } from 'src/app/features/store/models/User';
 import { friendsUrl, invitesUrl } from '../../constants/urls';

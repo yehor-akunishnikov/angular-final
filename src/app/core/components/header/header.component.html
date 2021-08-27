@@ -1,38 +1,36 @@
-<header class="header">
-  <mat-toolbar color="primary">
-    <div class="container">
-      <div class="header__inner">
-        <a routerLink="store" class="nav-link">
-          <mat-icon 
-            aria-hidden="false" 
-            aria-label="Example home icon"
-            class="icon"
-          >
-          videogame_asset</mat-icon>
-        </a>
-        <nav class="nav">
-          <a routerLink="store/games" routerLinkActive="active" class="nav-link">
-            Games
-          </a>
-          <a routerLink="store/library" routerLinkActive="active" class="nav-link">
-            Library
-          </a>
-          <a routerLink="store/friends" routerLinkActive="active" class="nav-link">
-            Friends
-          </a>
-          <a routerLink="store/profile" routerLinkActive="active" class="nav-link">
-            Profile
-          </a>
-        </nav>
-        <a
-          mat-raised-button
-          matSuffix
-          routerLink="auth"
-          (click)="authService.logout()"
+<header color="primary" class="header">
+  <div class="container">
+    <mat-toolbar class="header__inner">
+      <a routerLink="store" class="nav-link">
+        <mat-icon 
+          aria-hidden="false" 
+          aria-label="Example home icon"
+          class="icon"
         >
-          Logout
+        videogame_asset</mat-icon>
+      </a>
+      <nav class="nav">
+        <a routerLink="store/games" routerLinkActive="active" class="nav-link">
+          Games
         </a>
-      </div>
-    </div>
-  </mat-toolbar>
+        <a routerLink="store/library" routerLinkActive="active" class="nav-link">
+          Library
+        </a>
+        <a routerLink="store/friends" routerLinkActive="active" class="nav-link">
+          Friends
+        </a>
+        <a routerLink="store/profile" routerLinkActive="active" class="nav-link">
+          Profile
+        </a>
+      </nav>
+      <a
+        mat-raised-button
+        matSuffix
+        routerLink="auth"
+        (click)="authService.logout()"
+      >
+        Logout
+      </a>
+    </mat-toolbar>
+  </div>
 </header>

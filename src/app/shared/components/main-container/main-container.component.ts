@@ -1,4 +1,4 @@
-import { Component, Input } from '@angular/core';
+import { Component } from '@angular/core';
 
 @Component({
   selector: 'app-main-container',
@@ -6,7 +6,7 @@ import { Component, Input } from '@angular/core';
   styleUrls: ['./main-container.component.scss']
 })
 export class MainContainerComponent {
-  @Input() public isPageLoading: boolean = true;
+  public isPageLoading: boolean = true;
 
   public toggleLoadingStatus(status: boolean) {
     if(status) this.isPageLoading = status;

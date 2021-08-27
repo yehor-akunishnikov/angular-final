@@ -8,6 +8,10 @@ import { MatButtonModule } from '@angular/material/button';
 import { MatToolbarModule } from '@angular/material/toolbar'; 
 import { MatDialogModule } from '@angular/material/dialog'; 
 import { MatProgressSpinnerModule } from '@angular/material/progress-spinner';
+import { MatSliderModule } from '@angular/material/slider'; 
+import { MatDividerModule } from '@angular/material/divider'; 
+import { MatCheckboxModule } from '@angular/material/checkbox';
+import { ClipboardModule } from '@angular/cdk/clipboard'; 
 
 const MATERIAL_COMPONENTS = 
 [
@@ -19,6 +23,10 @@ const MATERIAL_COMPONENTS =
   MatToolbarModule,
   MatDialogModule,
   MatProgressSpinnerModule,
+  MatSliderModule,
+  MatDividerModule,
+  MatCheckboxModule,
+  ClipboardModule,
 ];
 
 @NgModule({

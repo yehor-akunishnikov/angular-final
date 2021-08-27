@@ -4,4 +4,6 @@ export interface User {
   status: number,
   type: string;
   inviteId: string,
+  age?: string,
+  email?: string,
 }

@@ -13,20 +13,17 @@ export class FriendsListComponent implements OnInit, OnDestroy {
   private ngUnsubscribe: Subject<void> = new Subject<void>();
   public friends$: Observable<User[]> = new Observable();
   public loading$: Observable<boolean> = new Observable();
-  @Output() onPageLoading: EventEmitter<boolean> = new EventEmitter();
 
   constructor(
     private readonly friendsService: FriendsService,
   ) { }
 
   public ngOnInit(): void {
-    this.onPageLoading.emit();
     this.friends$ = this.friendsService.getFriends$();
     this.loading$ = this.friendsService.isLoading$();
   }
 
   public ngOnDestroy() {
-    this.onPageLoading.emit();
     this.ngUnsubscribe.next();
     this.ngUnsubscribe.complete();
   }

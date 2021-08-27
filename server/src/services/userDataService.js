@@ -81,16 +81,23 @@ const removeFriendById = async(userId, friendId) => {
 
 // Games
 const getUserGamesById = async (userId) => {
-  const { games } = await User.findById(userId);
+  const { games:userLibrary } = await User.findById(userId);
 
-  return await Game.find({
+  const gamesList = await Game.find({
     '_id': {
-      $in: games
+      $in: userLibrary
     },
-  }, (err, gamesList) => {
-    if(err) throw new InvalidRequestError();
-    return gamesList;
   }).select(['-__v']);
+
+  return gamesList.map(game => {
+    const letters = game.description.length;
+
+    if(letters > 300) {
+      game.description = game.description.slice(0, 300).trim() + '...';
+    }
+
+    return game;
+  });
 }
 
 const addGameById = async (userId, gameId) => {

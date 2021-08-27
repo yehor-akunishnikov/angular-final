@@ -1,0 +1,16 @@
+<mat-card class="card">
+  <div class="game-header">
+    <div class="game-name">{{name}}</div>
+    <div *ngIf="price" class="game-price">{{price}}</div>
+  </div>
+  <div class="game-body">
+    <mat-card-content>
+      <p>
+        {{description}}
+      </p>
+    </mat-card-content>
+    <mat-card-actions>
+      <ng-content></ng-content>
+    </mat-card-actions>
+  </div>
+</mat-card>

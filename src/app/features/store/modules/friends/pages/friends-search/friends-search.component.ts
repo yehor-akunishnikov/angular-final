@@ -48,8 +48,4 @@ export class FriendsSearchComponent implements OnInit, OnDestroy {
       .pipe(takeUntil(this.ngUnsubscribe))
       .subscribe();
   }
-
-  public updateFilter(text: string) {
-    this.searchInputText = text;
-  }
 }

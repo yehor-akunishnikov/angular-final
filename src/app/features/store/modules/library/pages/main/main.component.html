@@ -1,0 +1,33 @@
+<app-page-header
+  title="Your library"
+>
+</app-page-header>
+
+
+
+<div 
+  class="flex-container" 
+  *ngIf="{games: games$ | async, loading: loading$ | async} as observables"
+>
+  <div *ngIf="!observables.loading" class="games-grid" >
+    <app-game
+      *ngFor="let game of observables.games"
+      [name]="game.name"
+      [description]="game.description"
+    >
+    <div class="flex-container">
+      <button 
+        mat-flat-button 
+        color="primary"
+        class="full-width btn"
+        (click)="download(game)"
+      >Download</button>
+      <button 
+        mat-stroked-button
+        color="primary"
+        class="full-width btn"
+        [cdkCopyToClipboard]="share(game)"
+      >Share</button>
+    </div>
+    </app-game>
+  </div>

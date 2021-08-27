@@ -5,9 +5,9 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-
 .text-center{text-align: center;}.text-right{text-align: right;}
 .full-width {width: 100%;}
 .container {
-  max-width: 1140px;
-  width: 100%;
+  max-width: 1440px;
   margin: 0 auto;
+  padding: 0px 20px;
 }
 .center-wrapper {
   display: flex;
@@ -20,4 +20,8 @@ body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; background-
   box-sizing: border-box;
 
   padding: 0 20px;
+}
+.flex-container {
+  display: flex;
+  justify-content: space-between;
 }

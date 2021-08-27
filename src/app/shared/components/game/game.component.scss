@@ -1,0 +1,27 @@
+.card {
+  padding: 0;
+  overflow: hidden;
+  width: 100%;
+}
+.btn {
+  width: 100%;
+}
+.game-header {
+  height: 140px;
+  padding: 10px;
+
+  position: relative;
+
+  font-size: 16px;
+  color: #fff;
+
+  background-color: #d0a5f8;
+}
+.game-price {
+  position: absolute;
+  bottom: 10px;
+  right: 10px;
+}
+.game-body {
+  padding: 15px 20px 0px 20px;
+}

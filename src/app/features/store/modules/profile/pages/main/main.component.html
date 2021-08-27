@@ -1,0 +1,26 @@
+<div class="contant-wrapper">
+  <div class="content">
+    <div class="text-center">
+      <h1>Account info</h1>
+    </div>
+    
+    <form [formGroup]="profileForm" (submit)="submitForm()">
+      <mat-form-field class="input full-width" appearance="outline">
+        <mat-label>Username</mat-label>
+        <input formControlName="username" matInput placeholder="Your username">
+      </mat-form-field>
+      
+      <mat-form-field class="input full-width" appearance="outline">
+        <mat-label>Age</mat-label>
+        <input formControlName="age" matInput placeholder="Your age">
+      </mat-form-field>
+      
+      <mat-form-field class="input full-width" appearance="outline">
+        <mat-label>Email</mat-label>
+        <input formControlName="email" matInput placeholder="Your email">
+      </mat-form-field>
+    
+      <button mat-flat-button color="primary" class="full-width">Submit</button>
+    </form>
+  </div>
+</div>

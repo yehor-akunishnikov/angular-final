@@ -6,18 +6,18 @@
     <span>Go to friends list</span>
   </a>
 </app-page-header>
-<app-search-form
-  label="User"
-  placeholder="Nickname"
-  (onFormSubmit)="updateFilter($event)"
->
-</app-search-form>
+
+<mat-form-field class="input" appearance="outline">
+  <mat-label>Search friends</mat-label>
+  <input [(ngModel)]="searchInputText" matInput placeholder="Username">
+</mat-form-field>
+
 <h2>Search: {{searchInputText}}</h2>
 <div *ngIf="{users: users$ | async, loading: loading$ | async} as observables">
   <div *ngIf="!observables.loading">
     <app-list-item
       *ngFor="let user of observables.users || [] 
-      | searchFilter : searchInputText : 'username'"
+      | searchFilter : searchInputText"
     >
       <div>{{user.username}}</div>
 

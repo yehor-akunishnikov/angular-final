@@ -6,12 +6,16 @@
     <span>Find new friends</span>
   </a>
 </app-page-header>
+
 <app-invites-list
   (onInviteAccept)="acceptInvite($event)"
 ></app-invites-list>
+
 <div *ngIf="{friends: friends$ | async, loading: loading$ | async} as observables">
   <div *ngIf="!observables.loading">
+    
     <h2>My friends({{observables.friends?.length}})</h2>
+
     <app-list-item *ngFor="let friend of observables.friends">
       <div>{{friend.username}}</div>
       <button 
@@ -20,8 +24,10 @@
         (click)="removeFriend(friend)"
       >Remove friend</button>
     </app-list-item>
+
     <app-list-item *ngIf="!observables.friends?.length">
       <div>You have no friends</div>
     </app-list-item>
+
   </div>
 </div>

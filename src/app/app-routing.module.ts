@@ -46,8 +46,21 @@ const routes: Routes = [
         path:'friends',
         loadChildren: () => import('./features/store/modules/friends/friends.module').then(m => m.FriendsModule),
       },
+      {
+        path:'games',
+        loadChildren: () => import('./features/store/modules/games/games.module').then(m => m.GamesModule),
+      },
+      {
+        path:'library',
+        loadChildren: () => import('./features/store/modules/library/library.module').then(m => m.LibraryModule),
+      },
+      {
+        path: 'profile',
+        loadChildren: () => import('./features/store/modules/profile/profile.module').then(m => m.ProfileModule),
+      },
     ],
   },
+  { path: 'profile', loadChildren: () => import('./features/store/modules/profile/profile.module').then(m => m.ProfileModule) },
   { path: '**', component: NotFoundComponent }
 ];
 
