@@ -8,19 +8,37 @@
       <mat-form-field class="input full-width" appearance="outline">
         <mat-label>Username</mat-label>
         <input formControlName="username" matInput placeholder="Your username">
+        <mat-error *ngIf="!profileForm.controls['username'].valid">
+          Please enter a valid username
+        </mat-error>
       </mat-form-field>
       
       <mat-form-field class="input full-width" appearance="outline">
         <mat-label>Age</mat-label>
         <input formControlName="age" matInput placeholder="Your age">
+        <mat-error *ngIf="!profileForm.controls['age'].valid">
+          Please enter a valid age
+        </mat-error>
       </mat-form-field>
       
       <mat-form-field class="input full-width" appearance="outline">
         <mat-label>Email</mat-label>
         <input formControlName="email" matInput placeholder="Your email">
+        <mat-error *ngIf="!profileForm.controls['email'].valid">
+          Please enter a valid email
+        </mat-error>
       </mat-form-field>
-    
-      <button mat-flat-button color="primary" class="full-width">Submit</button>
+      
+      <div
+        [ngStyle]="{'margin': '10px 0px'}"
+      >
+        <button 
+          mat-flat-button 
+          color="primary" 
+          class="full-width"
+          [disabled]="!profileForm.valid"
+        >Submit</button>
+      </div>
     </form>
   </div>
 </div>

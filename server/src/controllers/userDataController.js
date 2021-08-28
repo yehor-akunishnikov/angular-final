@@ -80,8 +80,6 @@ router.put('/friend-invites', asyncWrapper(async (req, res) => {
     inviteId,
   } = req.body;
 
-  console.log(inviteId);
-
   await acceptFriendInvite(inviteId);
   res.status(200).json({ message: 'Invite successfully accepted!' });
 }));

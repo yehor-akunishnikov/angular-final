@@ -2,19 +2,19 @@
   title="Friends"
 >
   <a [routerLink]="['../list']" mat-flat-button matSuffix color="primary">
-    <mat-icon [ngStyle]="{'margin': '0px 5px 2px 0px'}" matSuffix >people</mat-icon>
+    <mat-icon class="btn-icon" matSuffix >people</mat-icon>
     <span>Go to friends list</span>
   </a>
 </app-page-header>
 
-<mat-form-field class="input" appearance="outline">
+<mat-form-field class="full-width" appearance="outline">
   <mat-label>Search friends</mat-label>
   <input [(ngModel)]="searchInputText" matInput placeholder="Username">
 </mat-form-field>
 
 <h2>Search: {{searchInputText}}</h2>
 <div *ngIf="{users: users$ | async, loading: loading$ | async} as observables">
-  <div *ngIf="!observables.loading">
+  <ng-container *ngIf="!observables.loading">
     <app-list-item
       *ngFor="let user of observables.users || [] 
       | searchFilter : searchInputText"
@@ -46,5 +46,5 @@
       >Accept invite</button>
 
     </app-list-item>
-  </div>
+  </ng-container>
 </div>

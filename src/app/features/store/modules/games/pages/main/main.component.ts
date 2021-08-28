@@ -54,9 +54,4 @@ export class MainComponent implements OnInit {
   public addGameToLib(game: Game) {
     this.gamesService.addGameToLib$(game._id).subscribe();
   }
-
-  public Logger() {
-    console.log(this.tags);
-  }
-
 }

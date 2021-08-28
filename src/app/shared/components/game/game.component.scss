@@ -6,22 +6,36 @@
 .btn {
   width: 100%;
 }
-.game-header {
-  height: 140px;
-  padding: 10px;
+.game-name {
+  padding: 5px;
+
+  color: #fff;
+  text-align: center;
+  background-color: #673ab7;
+}
+.game-image {
+  height: 200px;
 
   position: relative;
 
-  font-size: 16px;
-  color: #fff;
-
-  background-color: #d0a5f8;
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
 }
 .game-price {
+  font-size: 26px;
+  font-weight: 700;
+  line-height: 1;
+  text-shadow: #000000 1px 1px 2px;
+  color: #846eff;
+
   position: absolute;
-  bottom: 10px;
-  right: 10px;
+  bottom: 5px;
+  right: 12px;
 }
 .game-body {
   padding: 15px 20px 0px 20px;
+}
+.mat-chip-disabled {
+  opacity: 1 !important;
 }

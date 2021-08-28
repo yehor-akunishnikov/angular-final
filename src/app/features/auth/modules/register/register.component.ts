@@ -1,4 +1,4 @@
-import { Component, OnDestroy, OnInit } from '@angular/core';
+import { Component, OnInit } from '@angular/core';
 import { FormGroup, FormControl, Validators } from '@angular/forms';
 import { MatchPasswordValidator } from 'src/app/core/validators/matchPassword.validator';
 import { AuthService } from 'src/app/core/services/auth/auth.service';
@@ -8,7 +8,7 @@ import { AuthService } from 'src/app/core/services/auth/auth.service';
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.scss']
 })
-export class RegisterComponent implements OnInit, OnDestroy {
+export class RegisterComponent implements OnInit {
   public registerForm: FormGroup = new FormGroup({});
 
   constructor(
@@ -18,11 +18,6 @@ export class RegisterComponent implements OnInit, OnDestroy {
   public ngOnInit(): void {
     this.initForm();
   }
-
-  public ngOnDestroy(): void {
-    this.authService.unSub();
-  }
-
   private initForm() {
     this.registerForm = new FormGroup({
       username: new FormControl(null, [
@@ -39,5 +34,11 @@ export class RegisterComponent implements OnInit, OnDestroy {
 
   public onSubmit() {
     this.authService.register(this.registerForm.value);
+  }
+
+  public shouldShowError([controlName, firstError, secondError]: string[]) {
+    const control = this.registerForm.controls[controlName];
+
+    return control.hasError(firstError) && !control.hasError(secondError);
   }
 }

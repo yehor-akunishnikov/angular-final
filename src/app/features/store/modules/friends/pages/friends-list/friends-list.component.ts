@@ -1,6 +1,5 @@
-import { Component, OnDestroy, OnInit, Output, EventEmitter } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { Component, OnInit } from '@angular/core';
+import { Observable } from 'rxjs';
 import { FriendsService } from 'src/app/core/services/friends/friends.service';
 import { User } from 'src/app/features/store/models/User';
 
@@ -9,8 +8,7 @@ import { User } from 'src/app/features/store/models/User';
   templateUrl: './friends-list.component.html',
   styleUrls: ['./friends-list.component.scss']
 })
-export class FriendsListComponent implements OnInit, OnDestroy {
-  private ngUnsubscribe: Subject<void> = new Subject<void>();
+export class FriendsListComponent implements OnInit {
   public friends$: Observable<User[]> = new Observable();
   public loading$: Observable<boolean> = new Observable();
 
@@ -23,20 +21,13 @@ export class FriendsListComponent implements OnInit, OnDestroy {
     this.loading$ = this.friendsService.isLoading$();
   }
 
-  public ngOnDestroy() {
-    this.ngUnsubscribe.next();
-    this.ngUnsubscribe.complete();
-  }
-
   public acceptInvite(friend: User) {
     this.friendsService.acceptInvite$(friend)
-      .pipe(takeUntil(this.ngUnsubscribe))
       .subscribe();
   }
 
   public removeFriend(friend: User) {
     this.friendsService.removeFriend$(friend._id)
-      .pipe(takeUntil(this.ngUnsubscribe))
       .subscribe();
   }
 }

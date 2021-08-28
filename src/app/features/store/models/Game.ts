@@ -7,4 +7,5 @@ export interface Game {
   }
   description: string,
   tags: string[],
+  img: string
 };

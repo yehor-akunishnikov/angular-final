@@ -3,8 +3,6 @@
 >
 </app-page-header>
 
-
-
 <div 
   class="flex-container" 
   *ngIf="{games: games$ | async, loading: loading$ | async} as observables"
@@ -14,6 +12,8 @@
       *ngFor="let game of observables.games"
       [name]="game.name"
       [description]="game.description"
+      [tags]="game.tags"
+      [img]="game.img"
     >
     <div class="flex-container">
       <button 

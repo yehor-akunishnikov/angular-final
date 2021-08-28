@@ -1,6 +1,5 @@
-import { Component, OnInit, Output, EventEmitter, OnDestroy } from '@angular/core';
-import { Observable, Subject } from 'rxjs';
-import { takeUntil } from 'rxjs/operators';
+import { Component, OnInit, Output, EventEmitter } from '@angular/core';
+import { Observable } from 'rxjs';
 
 import { InvitesService } from 'src/app/core/services/invites/invites.service';
 
@@ -12,8 +11,7 @@ import { Invite } from '../../models/Invite';
   templateUrl: './invites-list.component.html',
   styleUrls: ['./invites-list.component.scss']
 })
-export class InvitesListComponent implements OnInit, OnDestroy {
-  private ngUnsubscribe: Subject<void> = new Subject<void>();
+export class InvitesListComponent implements OnInit {
   public invites$: Observable<Invite[]> = new Observable<Invite[]>();
   public loading$: Observable<boolean> = new Observable();
   @Output() onInviteAccept: EventEmitter<User> = new EventEmitter;
@@ -27,15 +25,8 @@ export class InvitesListComponent implements OnInit, OnDestroy {
     this.loading$ = this.inviteService.isLoading$();
   }
 
-  public ngOnDestroy() {
-    this.ngUnsubscribe.next();
-    this.ngUnsubscribe.complete();
-  }
-
   public acceptInvite(invite: Invite) {
-    this.inviteService.acceptInvite$(invite._id)
-      .pipe(takeUntil(this.ngUnsubscribe))
-      .subscribe();
+    this.inviteService.removeInvite(invite._id);
 
     this.onInviteAccept.emit({
       _id: invite.requester,

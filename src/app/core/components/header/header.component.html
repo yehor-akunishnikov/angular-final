@@ -23,14 +23,28 @@
           Profile
         </a>
       </nav>
-      <a
+      <button
+        class="toggler-btn"
         mat-raised-button
         matSuffix
-        routerLink="auth"
         (click)="authService.logout()"
       >
         Logout
-      </a>
+      </button>
     </mat-toolbar>
+    <nav class="mobile-nav">
+      <a routerLink="store/games" routerLinkActive="active" class="nav-link">
+        Games
+      </a>
+      <a routerLink="store/library" routerLinkActive="active" class="nav-link">
+        Library
+      </a>
+      <a routerLink="store/friends" routerLinkActive="active" class="nav-link">
+        Friends
+      </a>
+      <a routerLink="store/profile" routerLinkActive="active" class="nav-link">
+        Profile
+      </a>
+    </nav>
   </div>
 </header>

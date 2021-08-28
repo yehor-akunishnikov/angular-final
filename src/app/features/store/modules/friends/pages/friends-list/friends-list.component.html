@@ -2,7 +2,7 @@
   title="Friends"
 >
   <a [routerLink]="['../search']" mat-flat-button matSuffix color="primary">
-    <mat-icon [ngStyle]="{'margin': '0px 5px 2px 0px'}" matSuffix >person_add_alt</mat-icon>
+    <mat-icon class="btn-icon" matSuffix >person_add_alt</mat-icon>
     <span>Find new friends</span>
   </a>
 </app-page-header>
@@ -12,7 +12,7 @@
 ></app-invites-list>
 
 <div *ngIf="{friends: friends$ | async, loading: loading$ | async} as observables">
-  <div *ngIf="!observables.loading">
+  <ng-container *ngIf="!observables.loading">
     
     <h2>My friends({{observables.friends?.length}})</h2>
 
@@ -29,5 +29,5 @@
       <div>You have no friends</div>
     </app-list-item>
 
-  </div>
+  </ng-container>
 </div>

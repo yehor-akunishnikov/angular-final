@@ -1,7 +1,6 @@
 import { Component, OnInit } from '@angular/core';
-import { FormControl, FormGroup } from '@angular/forms';
+import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { ProfileService } from 'src/app/core/services/profile/profile.service';
-import { ProfileInfo } from 'src/app/features/store/models/ProfileInfo';
 import { User } from 'src/app/features/store/models/User';
 
 @Component({
@@ -33,9 +32,12 @@ export class MainComponent implements OnInit {
 
   private initForm() {
     this.profileForm = new FormGroup({
-      username: new FormControl(null),
-      age: new FormControl(null),
-      email: new FormControl(null),
+      username: new FormControl(null, [
+        Validators.required,
+        Validators.pattern("^[A-Za-z0-9_-]{3,10}$"),
+      ]),
+      age: new FormControl(null, [Validators.pattern("^[0-9]{0,3}$")]),
+      email: new FormControl(null, [Validators.email]),
     });
   }
 

@@ -40,7 +40,7 @@ const routes: Routes = [
       {
         path: '',
         pathMatch: 'full',
-        redirectTo: 'friends',
+        redirectTo: 'games',
       },
       {
         path:'friends',
@@ -60,7 +60,6 @@ const routes: Routes = [
       },
     ],
   },
-  { path: 'profile', loadChildren: () => import('./features/store/modules/profile/profile.module').then(m => m.ProfileModule) },
   { path: '**', component: NotFoundComponent }
 ];
 

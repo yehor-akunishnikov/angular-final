@@ -1,6 +1,9 @@
 <mat-card class="card">
-  <div class="game-header">
-    <div class="game-name">{{name}}</div>
+  <div class="game-name">{{name}}</div>
+  <div 
+    class="game-image"
+    [ngStyle]="{'background-image': 'url(assets/img/' + img + ')'}"
+  >
     <div *ngIf="price" class="game-price">{{price}}</div>
   </div>
   <div class="game-body">
@@ -8,6 +11,14 @@
       <p>
         {{description}}
       </p>
+      <mat-chip-list>
+        <mat-chip 
+          *ngFor="let tag of tags" 
+          color="primary"
+          disabled
+          class="tag"
+        >{{tag}}</mat-chip>
+      </mat-chip-list>
     </mat-card-content>
     <mat-card-actions>
       <ng-content></ng-content>

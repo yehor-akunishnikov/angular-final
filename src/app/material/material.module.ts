@@ -12,6 +12,7 @@ import { MatSliderModule } from '@angular/material/slider';
 import { MatDividerModule } from '@angular/material/divider'; 
 import { MatCheckboxModule } from '@angular/material/checkbox';
 import { ClipboardModule } from '@angular/cdk/clipboard'; 
+import { MatChipsModule } from '@angular/material/chips';
 
 const MATERIAL_COMPONENTS = 
 [
@@ -27,6 +28,7 @@ const MATERIAL_COMPONENTS =
   MatDividerModule,
   MatCheckboxModule,
   ClipboardModule,
+  MatChipsModule,
 ];
 
 @NgModule({

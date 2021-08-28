@@ -29,11 +29,8 @@ export class InvitesService extends Store<Invite> {
       );
   }
 
-  public acceptInvite$(inviteId: string): Observable<Object> {
-    return this.http.put(invitesUrl, {inviteId})
-      .pipe(
-        finalize(() => this.deleteEntity(inviteId))
-      );
+  public removeInvite(inviteId: string): void {
+    this.deleteEntity(inviteId);
   }
 
   private getInvitesFromServer$(): Observable<Invite[]> {
